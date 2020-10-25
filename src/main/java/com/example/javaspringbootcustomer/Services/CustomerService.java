@@ -15,4 +15,15 @@ public class CustomerService {
     public List<Customer> findAll(){
        return customerRepository.findAll();
     }
+
+    public Customer findbyId(String id) {
+        return  customerRepository.findById(id).isPresent()?customerRepository.findById(id).get():null;
+    }
+    public List<Customer>findbyRegion(String region){
+        return customerRepository.findByRegion(region);
+    }
+
+    public List<Customer>findbyagethan(int age){
+        return customerRepository.findByAgethan(age);
+    }
 }
