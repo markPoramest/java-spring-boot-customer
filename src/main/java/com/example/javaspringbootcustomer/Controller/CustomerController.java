@@ -3,10 +3,7 @@ package com.example.javaspringbootcustomer.Controller;
 import com.example.javaspringbootcustomer.Model.Customer;
 import com.example.javaspringbootcustomer.Services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +29,21 @@ public class CustomerController {
     @GetMapping("/findbyagethan/{age}")
     public List<Customer> findbyagethan(@PathVariable("age") String age){
         return customerService.findbyagethan(Integer.parseInt(age));
+    }
+
+    @PostMapping("/update/{id}")
+    public void updateCustomer(@PathVariable("id")String id , @RequestBody Customer customer){
+        customerService.updateCustomer(id,customer);
+    }
+
+    @PostMapping("/insert")
+    public void updateCustomer( @RequestBody Customer customer){
+        customerService.insertCustomer(customer);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void updateCustomer( @PathVariable("id")String id){
+        customerService.deleteCustomer(id);
     }
 
 }

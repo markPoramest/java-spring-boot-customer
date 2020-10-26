@@ -26,4 +26,28 @@ public class CustomerService {
     public List<Customer>findbyagethan(int age){
         return customerRepository.findByAgethan(age);
     }
+
+    public void updateCustomer(String id,Customer customer){
+        Customer co = customerRepository.findById(id).isPresent()?customerRepository.findById(id).get():null;
+        co.setAge(customer.getAge());
+        co.setCar(customer.isCar());
+        co.setCurrentAct(customer.isCurrentAct());
+        co.setIncome(customer.getIncome());
+        co.setMarried(customer.isMarried());
+        co.setMortgage(customer.isMortgage());
+        co.setPep(customer.isPep());
+        co.setRegion(customer.getRegion());
+        co.setSaveAct(customer.isSaveAct());
+        co.setSex(customer.isSex());
+        customerRepository.save(co);
+    }
+
+    public void deleteCustomer(String id){
+        Customer co = customerRepository.findById(id).isPresent()?customerRepository.findById(id).get():null;
+        customerRepository.delete(co);
+    }
+
+    public void insertCustomer(Customer customer){
+        customerRepository.save(customer);
+    }
 }
